@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct{
+	int* data;
+	int top;
+	int size;
+
+}Stack;
+
+void push(Stack *sp, int val);
+int pop(Stack *sp);
+int peep(Stack *sp);
+Stack* init(int size);
+
+Stack* init(int size){
+	Stack *sp = (Stack*)malloc(sizeof(Stack));
+	if(sp == '\0'){
+		printf("no hay espacio");
+		exit(1);
+	}
+	sp->data = (int*)malloc(sizeof(int) * size);
+	if(sp->data == '\0'){
+		printf("no hay espacio");
+		exit(1);
+	}
+	sp->top=-1;
+	sp->size=size;
+	return sp;
+	
+}
+void push(Stack *sp, int val){
+	if(sp->top == sp->size-1){
+		int *tmp = (int*)malloc(sizeof(int)*sp->size *1);
+		if(tmp == '\0'){
+			printf("error!");
+			return;
+		}
+	
+		for(int i = 0; i <= sp->top; i++){
+			tmp[i]= sp->data[i];
+		}
+		free(sp->data);
+		sp->data = tmp;
+		sp->size *=2;
+	}
+
+	sp->data[++sp->top]=val;
+
+
+}
+int pop(Stack *sp){
+	if(sp->top == -1){
+		return -1001;
+	}
+
+	else{
+		return sp->data[sp->top--];
+	}
+}
+int peep(Stack *sp){
+	if(sp->top == -1) return -1001;
+	else return sp->data[sp->top];
+}
+
+int main(void){
+	Stack *s1 = init(5);
+	push(s1,10);
+	push(s1,11);
+	push(s1,12);
+	push(s1,13);
+	push(s1,14);
+
+	printf("size of stack: %d\n", s1->size);
+	push(s1,15);
+	printf("size of stack %d\n",s1->size);
+
+	printf("peek is %d\n",peep(s1));
+
+}
