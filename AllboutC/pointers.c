@@ -5,28 +5,24 @@ int main(void){
 	//char *cptr;
 	//float *fptr;
 
-	int a, b;
-	int *iptr;
-	int *jptr;
+	int a,b;
+	int *iptr, *jptr;
 
-	a=5;
-	b=6;
+	a = 5;
+	b = 6;
 
-	printf("iptr before init = %p\n",iptr);
-	printf("jptr before inti = %p\n", jptr);
+	printf("before iptr = %p\n", iptr);
+	printf("before jptr = %p\n", jptr);
 
 	iptr = &a;
 	jptr = &b;
 	
-	
 	printf("iptr = %p\n", iptr);
-	printf("value pointed to by iptr=%d\n",*iptr);
+	printf("value of iptr %d\n", *iptr);
 	printf("jptr = %p\n", jptr);
-	printf("value pointed to by jptr=%d\n",*jptr);
-	
-	*iptr=10;
+	printf("value of jptr = %d\n", *jptr);
 
-	
+	*iptr = 10;
 
 
 
